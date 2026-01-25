@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mandi Rates Comparison | Smart Krishi Portal</title>
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      background-color: #f5f9f6;
+      background-image: url(rate.jpg);
+      background-size: cover;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    header {
+      background-color: #2e7d32;
+      color: white;
+      text-align: center;
+      padding: 1rem 0;
+      font-size: 1.6rem;
+      letter-spacing: 1px;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 2rem auto;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+      padding: 1.5rem 2rem;
+    }
+
+    h2 {
+      color: #1b5e20;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+      gap: 10px;
+    }
+
+    input[type="text"] {
+      flex: 1 1 48%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 10px;
+      text-align: center;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #43a047;
+      color: white;
+      font-weight: 600;
+    }
+
+    tr:hover {
+      background-color: #f1f8f2;
+      transition: background 0.3s ease;
+    }
+
+    .up {
+      color: #2e7d32;
+      font-weight: 600;
+    }
+
+    .down {
+      color: #d32f2f;
+      font-weight: 600;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 2rem;
+      color: #555;
+      font-size: 0.9rem;
+      padding-bottom: 1rem;
+    }
+
+    @media (max-width: 768px) {
+      input[type="text"] {
+        flex: 1 1 100%;
+      }
+      th, td {
+        font-size: 0.9rem;
+        padding: 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>🌾 Smart Krishi Portal — Mandi Rates Comparison</header>
+
+  <div class="container">
+    <h2>Compare Previous and Present Day Rates</h2>
+
+    <div class="filters">
+      <input type="text" id="cropInput" placeholder="🔍 Search by crop name..." oninput="filterMandi()">
+      <input type="text" id="districtInput" placeholder="🏙️ Search by district or market..." oninput="filterMandi()">
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>State</th>
+          <th>District</th>
+          <th>Market</th>
+          <th>Commodity</th>
+          <th>Variety</th>
+          <th>Prev Day Price (₹)</th>
+          <th>Today Price (₹)</th>
+          <th>Change</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody id="mandiTableBody"></tbody>
+    </table>
+  </div>
+
+  <div class="footer">
+    © 2025 Smart Krishi Portal 
+  </div>
+
+  <script>
+    // ===== Static Mandi Data with Previous & Current Day Prices =====
+    const mandiData = [
+      { state: "Madhya Pradesh", district: "Indore", market: "Indore Mandi", commodity: "Wheat", variety: "Lok-1", prev_price: 2150, today_price: 2200, date: "2025-10-12" },
+      { state: "Maharashtra", district: "Nagpur", market: "Nagpur Mandi", commodity: "Soybean", variety: "JS 335", prev_price: 3950, today_price: 4000, date: "2025-10-12" },
+      { state: "Punjab", district: "Ludhiana", market: "Ludhiana Mandi", commodity: "Paddy", variety: "Basmati", prev_price: 3150, today_price: 3200, date: "2025-10-12" },
+      { state: "Uttar Pradesh", district: "Kanpur", market: "Kanpur Mandi", commodity: "Potato", variety: "Kufri Jyoti", prev_price: 1080, today_price: 1050, date: "2025-10-12" },
+      { state: "Gujarat", district: "Ahmedabad", market: "Ahmedabad Mandi", commodity: "Cotton", variety: "Shankar-6", prev_price: 7450, today_price: 7500, date: "2025-10-12" },
+      { state: "Uttar Pradesh", district: "Lucknow", market: "Lucknow Mandi", commodity: "Rice", variety: "Basmati", prev_price: 2680, today_price: 2700, date: "2025-10-12" },
+      { state: "Uttar Pradesh", district: "Meerut", market: "Meerut Mandi", commodity: "Sugarcane", variety: "Co 0238", prev_price: 315, today_price: 320, date: "2025-10-12" }
+    ];
+
+    // ===== Render Data =====
+    function loadMandiData(data) {
+      const tableBody = document.getElementById("mandiTableBody");
+      tableBody.innerHTML = "";
+
+      if (data.length === 0) {
+        tableBody.innerHTML = `<tr><td colspan="9">No results found</td></tr>`;
+        return;
+      }
+
+      data.forEach(item => {
+        const priceChange = item.today_price - item.prev_price;
+        const changeClass = priceChange > 0 ? "up" : priceChange < 0 ? "down" : "";
+        const changeSymbol = priceChange > 0 ? "🔼" : priceChange < 0 ? "🔽" : "➖";
+
+        const row = `
+          <tr>
+            <td>${item.state}</td>
+            <td>${item.district}</td>
+            <td>${item.market}</td>
+            <td>${item.commodity}</td>
+            <td>${item.variety}</td>
+            <td>${item.prev_price}</td>
+            <td>${item.today_price}</td>
+            <td class="${changeClass}">${changeSymbol} ${Math.abs(priceChange)} ₹</td>
+            <td>${item.date}</td>
+          </tr>`;
+        tableBody.innerHTML += row;
+      });
+    }
+
+    // ===== Filter Logic =====
+    function filterMandi() {
+      const cropInput = document.getElementById("cropInput").value.toLowerCase();
+      const districtInput = document.getElementById("districtInput").value.toLowerCase();
+
+      const filtered = mandiData.filter(item => {
+        return (
+          (!cropInput || item.commodity.toLowerCase().includes(cropInput)) &&
+          (!districtInput || item.district.toLowerCase().includes(districtInput) || item.market.toLowerCase().includes(districtInput))
+        );
+      });
+
+      loadMandiData(filtered);
+    }
+
+    // Load all data initially
+    loadMandiData(mandiData);
+  </script>
+</body>
+</html>

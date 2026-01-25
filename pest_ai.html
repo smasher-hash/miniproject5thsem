@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>AI Pest Detection | Smart Krishi</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<h2>🌱 AI Pest & Disease Detection</h2>
+<div class="upload-box">
+<form id="uploadForm">
+<input type="text" id="farmer_name" placeholder="Enter your name" required><br>
+<input type="file" id="image" accept="image/*" required><br>
+<button type="submit">Detect Disease</button>
+</form>
+
+<div id="output" style="display:none;">
+<h3 id="predResult"></h3>
+<p id="confidence"></p>
+<img id="preview" src=""><br>
+<h4 id="pesticLabel">💊 Recommended Pesticide</h4>
+<p><b>Name:</b> <span id="pesticideName"></span></p>
+<p><b>Dosage:</b> <span id="dosage"></span></p>
+<p><b>Safety:</b> <span id="safety"></span></p>
+
+<button id="speakButton">🔊 Listen Result</button>
+<select id="languageSelect">
+<option value="en">English</option>
+<option value="hi">Hindi</option>
+<option value="bho">Bhojpuri</option>
+<option value="mr">Marathi</option>
+<option value="ta">Tamil</option>
+<option value="pa">Punjabi</option>
+<option value="gu">Gujarati</option>
+<option value="or">Odia</option>
+<option value="kn">Kannada</option>
+<option value="te">Telugu</option>
+<option value="bn">Bengali</option>
+</select>
+</div>
+
+<p><a href="/pest_ai/history">📜 View My Detection History</a></p>
+
+<script>
+let translations = {};
+fetch('/static/data/translations.json').then(r=>r.json()).then(j=>translations=j);
+
+document.getElementById("uploadForm").addEventListener("submit", async e=>{
+  e.preventDefault();
+  const formData = new FormData();
+  formData.append("image", document.getElementById("image").files[0]);
+  formData.append("farmer_name", document.getElementById("farmer_name").value);
+
+  const res = await fetch("/pest_ai/detect",{method:"POST",body:formData});
+  const data = await res.json();
+
+  const output = document.getElementById("output");
+  if(data.error){
+    output.style.display="block";
+    document.getElementById("predResult").innerText="⚠️ "+data.error;
+    return;
+  }
+
+  output.style.display="block";
+  document.getElementById("predResult").innerText="🧠 Prediction: "+data.prediction;
+  document.getElementById("confidence").innerText="Confidence: "+data.confidence+"%";
+  document.getElementById("preview").src=data.image_url;
+  document.getElementById("pesticideName").innerText=data.pesticide;
+  document.getElementById("dosage").innerText=data.dosage;
+  document.getElementById("safety").innerText=data.safety;
+});
+
+// Voice guidance
+function speakResult(lang){
+  const pred=document.getElementById("predResult").innerText;
+  const conf=document.getElementById("confidence").innerText;
+  const pesticide=document.getElementById("pesticideName").innerText;
+  const dosage=document.getElementById("dosage").innerText;
+  const safety=document.getElementById("safety").innerText;
+
+  let message="";
+  switch(lang){
+    case "hi": message=`${pred}। अनुशंसित कीटनाशक है ${pesticide}। मात्रा: ${dosage}। सावधानी: ${safety}`; break;
+    case "bho": message=`${pred}। सुझावल कीटनाशक ${pesticide}। मात्रा: ${dosage}। सावधानी: ${safety}`; break;
+    case "mr": message=`${pred}। शिफारस केलेले कीटकनाशक: ${pesticide}। मात्रा: ${dosage}। सुरक्षा: ${safety}`; break;
+    case "ta": message=`${pred}। பரிந்துரைக்கப்பட்ட பூச்சிக்கொல்லி: ${pesticide}। அளவு: ${dosage}। பாதுகாப்பு: ${safety}`; break;
+    case "pa": message=`${pred}। ਸਿਫਾਰਸ਼ੀ ਕੀਟਨਾਸ਼ਕ: ${pesticide}। ਮਾਤਰਾ: ${dosage}। ਸੁਰੱਖਿਆ: ${safety}`; break;
+    case "gu": message=`${pred}। સૂચવેલ રાસાયણિક: ${pesticide}। ખુરાક: ${dosage}। સુરક્ષા: ${safety}`; break;
+    case "or": message=`${pred}। ଅନୁଶାସିତ କୀଟନାଶକ: ${pesticide}। ମାତ୍ରା: ${dosage}। ସୁରକ୍ଷା: ${safety}`; break;
+    case "kn": message=`${pred}। ಶಿಫಾರಸು ಮಾಡಿದ ಕೀಟನಾಶಕ: ${pesticide}। ಮಾತ್ರೆ: ${dosage}। ಸುರಕ್ಷತೆ: ${safety}`; break;
+    case "te": message=`${pred}। శిఫార్సు చేసిన కీటనాశకం: ${pesticide}। मात्रा: ${dosage}। సురక్షితం: ${safety}`; break;
+    case "bn": message=`${pred}। প্রস্তাবিত কীটনাশক: ${pesticide}। মাত্রা: ${dosage}। সতর্কতা: ${safety}`; break;
+    default: message=`${pred}. Recommended pesticide is ${pesticide}. Dosage: ${dosage}. Safety: ${safety}.`;
+  }
+
+  const utterance=new SpeechSynthesisUtterance(message);
+  utterance.lang = lang==="hi"||lang==="bho"?"hi-IN":
+                   lang==="mr"?"mr-IN":
+                   lang==="ta"?"ta-IN":
+                   lang==="pa"?"pa-IN":
+                   lang==="gu"?"gu-IN":
+                   lang==="or"?"or-IN":
+                   lang==="kn"?"kn-IN":
+                   lang==="te"?"te-IN":
+                   lang==="bn"?"bn-IN":"en-IN";
+  speechSynthesis.speak(utterance);
+}
+
+document.getElementById("speakButton").addEventListener("click", ()=>{
+  const lang=document.getElementById("languageSelect").value;
+  speakResult(lang);
+});
+</script>
+</body>
+</html>

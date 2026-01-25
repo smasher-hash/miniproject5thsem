@@ -1,0 +1,35 @@
+[
+  {
+    "state": "Maharashtra",
+    "district": "Pune",
+    "market": "Pune Mandi",
+    "commodity": "Wheat",
+    "variety": "Lokwan",
+    "min_price": 2200,
+    "max_price": 2500,
+    "modal_price": 2400,
+    "date": "2025-10-10"
+  },
+  {
+    "state": "Punjab",
+    "district": "Ludhiana",
+    "market": "Ludhiana Market",
+    "commodity": "Rice",
+    "variety": "Basmati",
+    "min_price": 3000,
+    "max_price": 3400,
+    "modal_price": 3200,
+    "date": "2025-10-10"
+  },
+  {
+    "state": "Madhya Pradesh",
+    "district": "Indore",
+    "market": "Indore Mandi",
+    "commodity": "Soybean",
+    "variety": "Yellow",
+    "min_price": 4500,
+    "max_price": 4900,
+    "modal_price": 4700,
+    "date": "2025-10-10"
+  }
+]

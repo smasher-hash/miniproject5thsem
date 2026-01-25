@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Get Help | Smart Krishi Portal</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <section class="help-section">
+    <h2>🌾 Get Help & Support</h2>
+    <p>Need assistance with your crops, pest issues, or government schemes? Submit your query below.</p>
+
+    <form id="helpForm" method="POST" action="/submit_help">
+      <label>👨‍🌾 Farmer Name:</label><br>
+      <input type="text" name="name" placeholder="Enter your name" required><br>
+
+      <label>🧩 Issue Type:</label><br>
+      <select name="issue_type" required>
+        <option value="">Select issue</option>
+        <option>Pest/Disease Problem</option>
+        <option>Soil or Crop Query</option>
+        <option>Government Scheme Help</option>
+        <option>Market Rate Query</option>
+        <option>Other</option>
+      </select><br>
+
+      <label>🗣 Describe your problem:</label><br>
+      <textarea id="message" name="message" rows="5" placeholder="Describe your issue..." required></textarea><br>
+
+      <button type="button" id="micButton">🎤 Speak Message</button><br><br>
+      <button type="submit" class="btn" ><a href="help_success.html">Submit Request</a></button>
+    </form>
+
+    <div class="contact-info">
+      <h3>📞 Other Help Lines</h3>
+      <p><b>Krishi Helpline:</b> 1800-180-1551</p>
+      <p><b>Soil Testing Support:</b> 1800-180-1552</p>
+      <p><b>Email:</b> support@smartkrishi.gov.in</p>
+    </div>
+  </section>
+
+  <script>
+  // 🎙️ Voice input (Web Speech API)
+  const micBtn = document.getElementById("micButton");
+  const msgBox = document.getElementById("message");
+  let recognition;
+
+  if ('webkitSpeechRecognition' in window) {
+      recognition = new webkitSpeechRecognition();
+      recognition.lang = 'hi-IN'; // Hindi default
+      recognition.onresult = (event) => {
+          msgBox.value = event.results[0][0].transcript;
+      };
+  } else {
+      micBtn.disabled = true;
+      micBtn.innerText = "🎤 Voice not supported";
+  }
+
+  micBtn.addEventListener("click", () => {
+      recognition.start();
+      micBtn.innerText = "🎧 Listening...";
+      recognition.onend = () => micBtn.innerText = "🎤 Speak Message";
+  });
+  </script>
+</body>
+</html>

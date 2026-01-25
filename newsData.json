@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "title": "Cold-chain push for horticulture produce",
+    "source": "State Agri Dept",
+    "date": "2025-10-02",
+    "excerpt": "New cold storage subsidy to improve market access.",
+    "url": "https://news.example.com/cold-chain",
+    "region": "UP"
+  },
+  {
+    "id": 2,
+    "title": "Krishi Mela scheduled in District X",
+    "source": "UAS",
+    "date": "2025-10-05",
+    "excerpt": "Mela to host demonstrations on micro-irrigation, drones, and seeds.",
+    "url": "https://news.example.com/krishi-mela",
+    "region": "Karnataka"
+  }
+]

@@ -1,0 +1,23 @@
+[
+  {
+    "id": "pmksy",
+    "title": "Pradhan Mantri Krishi Sinchai Yojana",
+    "category": "Irrigation",
+    "summary": "Improve irrigation and water-use efficiency.",
+    "benefits": ["Micro-irrigation subsidy", "On-farm water management"],
+    "eligibility": "Farmer with land holding",
+    "applyLink": "https://example.gov.in/pmksy",
+    "stateCoverage": ["All"]
+  },
+  {
+    "id": "aif",
+    "title": "Agriculture Infrastructure Fund",
+    "category": "Infrastructure",
+    "summary": "Low-interest credit for storage, warehouses.",
+    "benefits": ["Low interest loans", "Support for FPOs & startups"],
+    "eligibility": "Individuals, farmers, FPOs, startups",
+    "applyLink": "https://example.gov.in/aif",
+    "stateCoverage": ["UP", "MP", "Punjab"]
+  }
+]
+

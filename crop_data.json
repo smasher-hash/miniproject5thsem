@@ -1,0 +1,28 @@
+[
+  {
+    "cropName": "Rice",
+    "type": "Food Crop",
+    "season": "Kharif",
+    "soilType": "Alluvial",
+    "fertilizer": "Urea",
+    "water": "High",
+    "sowing": "June-July",
+    "harvesting": "November-December",
+    "pests": "Stem borer",
+    "climate": "Warm and humid",
+    "yield": "2.5 tons"
+  },
+  {
+    "cropName": "Wheat",
+    "type": "Food Crop",
+    "season": "Rabi",
+    "soilType": "Loamy",
+    "fertilizer": "DAP",
+    "water": "Medium",
+    "sowing": "October-November",
+    "harvesting": "March",
+    "pests": "Termites",
+    "climate": "Cool and dry",
+    "yield": "2.8 tons"
+  }
+]

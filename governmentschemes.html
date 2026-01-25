@@ -1,0 +1,181 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+.schemes-section {
+  background: #f0f9f0;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.schemes-section h2 {
+  color: #2e7d32;
+  margin-bottom: 25px;
+  font-size: 1.8rem;
+}
+
+.schemes-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+  justify-content: center;
+  align-items: stretch;
+}
+
+.scheme-card {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.scheme-card:hover {
+  transform: translateY(-5px);
+}
+
+.scheme-card h3 {
+  color: #1b5e20;
+  margin-bottom: 10px;
+}
+
+.scheme-card p {
+  font-size: 0.95rem;
+}
+
+.scheme-card a {
+  display: inline-block;
+  margin-top: 10px;
+  color: #43a047;
+  font-weight: 600;
+  text-decoration: none;
+}
+.scheme-card a:hover {
+  text-decoration: underline;
+}
+
+</style>
+<body>
+    <section id="schemes" class="schemes-section">
+  <h2>🏛 Government Schemes & Latest News</h2>
+  <div id="schemes-container" class="schemes-container">
+    <p>Loading latest schemes and updates...</p>
+  </div>
+</section>
+<script src="governmentschemes.js"></script>
+</body>
+</html> -->
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Government Schemes | Smart Krishi Portal</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-green-50 font-sans">
+
+  <!-- Header -->
+  <header class="bg-green-700 text-white py-4 text-center shadow-md">
+    <h1 class="text-3xl font-bold">🏛 Government Schemes for Farmers</h1>
+    <p class="text-sm text-green-100">Explore all Central and State-level schemes supporting Indian agriculture</p>
+  </header>
+
+  <!-- Search and Filter -->
+  <section class="flex flex-wrap justify-center mt-6 px-4 gap-4">
+    <input 
+      type="text" 
+      id="searchInput" 
+      placeholder="🔍 Search scheme..." 
+      class="p-2 w-72 rounded-lg border border-green-300 focus:outline-none focus:ring-2 focus:ring-green-500"
+    />
+    <select 
+      id="filterType" 
+      class="p-2 rounded-lg border border-green-300 focus:outline-none focus:ring-2 focus:ring-green-500"
+    >
+      <option value="all">All Schemes</option>
+      <option value="central">Central Govt</option>
+      <option value="state">State Govt</option>
+    </select>
+  </section>
+
+  <!-- Schemes List -->
+  <section id="schemeList" class="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-6 p-6">
+    
+    <!-- Example Scheme Card -->
+    <div class="scheme-card bg-white rounded-2xl shadow-md hover:shadow-lg p-5 border-l-4 border-green-500" data-type="central">
+      <h2 class="text-xl font-semibold text-green-800">Pradhan Mantri Fasal Bima Yojana (PMFBY)</h2>
+      <p class="text-gray-600 mt-2">Provides crop insurance to farmers against yield losses due to natural calamities, pests & diseases.</p>
+      <p class="text-sm text-gray-500 mt-2">Ministry: Agriculture & Farmers Welfare</p>
+      <a href="https://pmfby.gov.in/" target="_blank" class="inline-block mt-3 bg-green-600 hover:bg-green-700 text-white px-3 py-1.5 rounded-lg text-sm">Know More</a>
+    </div>
+
+    <div class="scheme-card bg-white rounded-2xl shadow-md hover:shadow-lg p-5 border-l-4 border-green-500" data-type="central">
+      <h2 class="text-xl font-semibold text-green-800">PM-KISAN Samman Nidhi</h2>
+      <p class="text-gray-600 mt-2">Income support of ₹6,000 per year in three installments to all landholding farmer families.</p>
+      <p class="text-sm text-gray-500 mt-2">Ministry: Agriculture & Farmers Welfare</p>
+      <a href="https://pmkisan.gov.in/" target="_blank" class="inline-block mt-3 bg-green-600 hover:bg-green-700 text-white px-3 py-1.5 rounded-lg text-sm">Know More</a>
+    </div>
+
+    <div class="scheme-card bg-white rounded-2xl shadow-md hover:shadow-lg p-5 border-l-4 border-green-500" data-type="central">
+      <h2 class="text-xl font-semibold text-green-800">Soil Health Card Scheme</h2>
+      <p class="text-gray-600 mt-2">Promotes soil testing to help farmers apply the right amount of nutrients for better productivity.</p>
+      <p class="text-sm text-gray-500 mt-2">Ministry: Agriculture & Farmers Welfare</p>
+      <a href="https://soilhealth.dac.gov.in/" target="_blank" class="inline-block mt-3 bg-green-600 hover:bg-green-700 text-white px-3 py-1.5 rounded-lg text-sm">Know More</a>
+    </div>
+
+    <div class="scheme-card bg-white rounded-2xl shadow-md hover:shadow-lg p-5 border-l-4 border-green-500" data-type="state">
+      <h2 class="text-xl font-semibold text-green-800">KALIA Scheme (Odisha)</h2>
+      <p class="text-gray-600 mt-2">Financial assistance for cultivation and livelihood support to small and marginal farmers.</p>
+      <p class="text-sm text-gray-500 mt-2">Govt: Odisha State</p>
+      <a href="https://kalia.odisha.gov.in/" target="_blank" class="inline-block mt-3 bg-green-600 hover:bg-green-700 text-white px-3 py-1.5 rounded-lg text-sm">Know More</a>
+    </div>
+
+    <div class="scheme-card bg-white rounded-2xl shadow-md hover:shadow-lg p-5 border-l-4 border-green-500" data-type="state">
+      <h2 class="text-xl font-semibold text-green-800">Rythu Bandhu Scheme (Telangana)</h2>
+      <p class="text-gray-600 mt-2">Investment support of ₹5,000 per acre per season to all land-owning farmers for input costs.</p>
+      <p class="text-sm text-gray-500 mt-2">Govt: Telangana State</p>
+      <a href="https://rythubandhu.telangana.gov.in/" target="_blank" class="inline-block mt-3 bg-green-600 hover:bg-green-700 text-white px-3 py-1.5 rounded-lg text-sm">Know More</a>
+    </div>
+
+  </section>
+
+  <!-- JS: Search & Filter -->
+  <script>
+    const searchInput = document.getElementById("searchInput");
+    const filterType = document.getElementById("filterType");
+    const schemes = document.querySelectorAll(".scheme-card");
+
+    function filterSchemes() {
+      const searchValue = searchInput.value.toLowerCase();
+      const selectedType = filterType.value;
+
+      schemes.forEach(card => {
+        const title = card.querySelector("h2").textContent.toLowerCase();
+        const cardType = card.dataset.type;
+
+        const matchesSearch = title.includes(searchValue);
+        const matchesType = selectedType === "all" || cardType === selectedType;
+
+        if (matchesSearch && matchesType) {
+          card.style.display = "block";
+        } else {
+          card.style.display = "none";
+        }
+      });
+    }
+
+    searchInput.addEventListener("input", filterSchemes);
+    filterType.addEventListener("change", filterSchemes);
+  </script>
+
+</body>
+</html>

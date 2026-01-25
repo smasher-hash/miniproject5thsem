@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Krishi Portal - Crop Advisory</title>
+  <style>
+    body {
+      font-family: Arial;
+      background-color: #f0fff0;
+      background-image: url(img5.jpg);
+      background-size: cover;
+      text-align: center;
+      margin-top: 50px;
+      color: #333;
+    }
+    .container {
+      background: rgb(174, 221, 216);
+      padding: 20px;
+      border-radius: 15px;
+      width: 350px;
+      margin: auto;
+      box-shadow: 0 0 10px #ccc;
+    }
+    input {
+      padding: 10px;
+      width: 70%;
+      border-radius: 8px;
+      border: 1px solid #888;
+    }
+    button {
+      padding: 10px 15px;
+      background-color: green;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    button:hover {
+      background-color: darkgreen;
+    }
+    .result {
+      margin-top: 20px;
+      text-align: left;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>🌾 Smart Krishi Crop Advisory</h2>
+    <input type="text" id="cropInput" placeholder="Enter crop name (e.g. wheat)">
+    <button onclick="getAdvice()">Get Advice</button>
+
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    async function getAdvice() {
+      const crop = document.getElementById('cropInput').value.trim();
+      const resultDiv = document.getElementById('result');
+      resultDiv.innerHTML = 'Loading...';
+
+      try {
+        const response = await fetch(`http://127.0.0.1:5000/advice?crop=${crop}`);
+        const data = await response.json();
+
+        if (data.Error) {
+          resultDiv.innerHTML = `<p style="color:red;">${data.Error}</p>`;
+        }
+        else{
+          resultDiv.innerHTML = `
+            <h3>${data.Crop}</h3>
+            <p><b>Soil Type:</b> ${data["Soil Type"]}</p>
+            <p><b>Season:</b> ${data.Season}</p>
+            <p><b>Fertilizer:</b> ${data.Fertilizer}</p>
+            <p><b>Advisory:</b> ${data.Advisory}</p>`;
+        }
+      }
+      catch (error) {
+        resultDiv.innerHTML = `<p style="color:red;">Error fetching data</p>`;
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+[
+  {
+    "crop": "Wheat",
+    "disease": "Rust",
+    "pest_type": "Fungal",
+    "symptoms": "Yellow-orange powdery spots on leaves and stems.",
+    "causes": "Caused by Puccinia fungus, spreads in humid conditions.",
+    "control": "Use resistant varieties, apply Mancozeb or Propiconazole fungicides."
+  },
+  {
+    "crop": "Rice",
+    "disease": "Brown Spot",
+    "pest_type": "Fungal",
+    "symptoms": "Small circular brown spots with gray center on leaves.",
+    "causes": "Poor soil nutrients and fungal infection by Bipolaris oryzae.",
+    "control": "Apply balanced fertilizer, use seed treatment, and spray Carbendazim."
+  },
+  {
+    "crop": "Cotton",
+    "disease": "Bollworm",
+    "pest_type": "Insect",
+    "symptoms": "Bolls bored with larvae inside; yield loss observed.",
+    "causes": "Larvae of Helicoverpa armigera feed on developing bolls.",
+    "control": "Use pheromone traps, apply neem-based pesticide or Chlorpyrifos."
+  },
+  {
+    "crop": "Tomato",
+    "disease": "Leaf Curl Virus",
+    "pest_type": "Viral",
+    "symptoms": "Upward curling leaves, stunted plants, reduced fruiting.",
+    "causes": "Spread by whiteflies under warm conditions.",
+    "control": "Control whiteflies using Imidacloprid and remove infected plants."
+  }
+]

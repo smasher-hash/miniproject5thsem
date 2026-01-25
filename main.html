@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Krishi Portal</title>
+  <link rel="stylesheet" href="main.css">
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <h1>Smart Krishi Portal</h1>
+      <p id="welcome-message"></p> 
+    <div class="menu-toggle" onclick="toggleMenu()">☰ Menu</div>
+    <nav id="menu" style="display:none;">    
+      <a href="login.html">Login/Signup</a>
+      <!--<a href="#features">Features</a>-->
+      <a href="crop_advisory.html">Crop Advisory</a>
+      <a href="getWeather.html">Weather Updates</a>
+      <a href="governmentschemes.html">Government Schemes/News</a>
+      <a href="get_help.html">Get Help</a>
+      <a href="contact.html">Contact</a>
+      <button onclick="logout()">Logout</button>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h2>Helping Farmers To Grow Smarter 🌱</h2>
+    <p>Get crop advisory, weather updates, and Other Information tailored to your region.</p>
+    <button onclick="scrollToForm()">Get Recommendations</button>
+  </section>
+
+  <!-- Features -->
+  <section id="features" class="features">
+    <div class="card">
+      <h3>🌦 Weather Updates</h3>
+      <p>Get daily weather updates and alerts for your village.</p>
+      <a href="getWeather.html">Check Weather</a>
+    </div>
+
+     <div class="card">
+      <h3> 🌾 Crop Advisory</h3>
+      <p>Give the detail of any particular crop you search for.</p>
+      <a href="crop_advisory.html">Get Advice</a>
+    </div>
+
+    <div class="card">
+      <h3>🐛 Pest & Disease Guide</h3>
+      <p>Identify and manage pests with expert suggestions.</p>
+      <a href="pests.html">View Guide</a>
+    </div>
+    <div class="card">
+      <h3>📈 Market Prices</h3>
+      <p>Know mandi rates and sell your product at the right time.</p>
+      <a href="mandi.html">Check Prices</a>
+    </div>
+  </section>
+  <section>
+    <div class="images">
+      <p></p>
+    </div>
+  </section>
+ 
+
+  <!-- Form Section 
+  <section id="form" class="form-section">
+    <h2>Get Crop Advisory</h2>
+    <form onsubmit="showRecommendation(event)">
+      <input type="text" id="district" placeholder="Enter your district" required>
+      <input type="text" id="crop" placeholder="Enter your crop" required>
+      <button type="submit">Get Advice</button>
+    </form>
+    <p id="output"></p>
+  </section>-->
+
+  <!-- Footer -->
+  <footer id="contact">
+    <p>📞 Helpline: 1800-123-456 | © 2025 Smart Krishi Portal</p>
+  </footer>
+
+
+  <script src="main.js"></script>
+</body>
+</html>
