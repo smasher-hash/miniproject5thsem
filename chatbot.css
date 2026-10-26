@@ -1,0 +1,125 @@
+
+#chatbot-toggle {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 2000;
+  padding: 14px 18px;
+  border: 0;
+  border-radius: 30px;
+  background: #176b3a;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 5px 20px #0002;
+}
+
+#chatbot-panel {
+  position: fixed;
+  right: 22px;
+  bottom: 85px;
+  z-index: 2001;
+  width: min(370px, calc(100vw - 28px));
+  height: min(510px, calc(100dvh - 115px));
+  background: white;
+  border: 1px solid #dce9dd;
+  border-radius: 18px;
+  box-shadow: 0 12px 40px #0002;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  font-family: Arial, sans-serif;
+}
+
+#chatbot-panel[hidden] {
+  display: none;
+}
+
+.chatbot-header {
+  padding: 15px;
+  background: #176b3a;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.chatbot-header p {
+  font-size: 12px;
+  margin-top: 3px;
+}
+
+#chatbot-close {
+  background: transparent;
+  color: white;
+  border: 0;
+  font-size: 27px;
+  cursor: pointer;
+}
+
+#chatbot-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.chat-message {
+  max-width: 90%;
+  padding: 11px 13px;
+  border-radius: 13px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.bot-message {
+  align-self: flex-start;
+  background: #edf6ed;
+  color: #203329;
+}
+
+.user-message {
+  align-self: flex-end;
+  background: #176b3a;
+  color: white;
+}
+
+#chatbot-form {
+  display: flex;
+  gap: 8px;
+  padding: 12px;
+  border-top: 1px solid #e5ece5;
+}
+
+#chatbot-input {
+  flex: 1;
+  min-width: 0;
+  border: 1px solid #ccd9cd;
+  border-radius: 9px;
+  padding: 11px;
+}
+
+#chatbot-send {
+  border: 0;
+  border-radius: 9px;
+  background: #176b3a;
+  color: white;
+  padding: 10px 14px;
+  cursor: pointer;
+}
+
+#chatbot-send:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.chatbot-note {
+  padding: 0 12px 10px;
+  color: #68776d;
+  font-size: 10px;
+  line-height: 1.4;
+}

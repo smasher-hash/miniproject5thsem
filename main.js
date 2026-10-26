@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (user) {
     welcomeEl.textContent = `Welcome, ${user.name}!`;
   } else {
-    welcomeEl.textContent = "Welcome to Smart Krishi Portal!";
+    welcomeEl.textContent = "Welcome to KrishiMitra_AI!";
   }
 });
 
@@ -39,7 +39,7 @@ document.getElementById('signup-form').addEventListener('submit', function(e) {
     localStorage.setItem('user', JSON.stringify({ name, email }));
 
     // Redirect to main site
-    window.location.href = 'main.html';
+    window.location.href = 'index.html';
   } else {
     alert('Please fill in all fields.');
   }

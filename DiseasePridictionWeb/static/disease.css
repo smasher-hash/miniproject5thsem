@@ -1,0 +1,1122 @@
+/* * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f8f3;
+    color: #263a29;
+    min-height: 100vh;
+} */
+
+
+/* NAVBAR */
+
+/* .navbar {
+    background: #2e7d32;
+    color: white;
+
+    padding: 18px 8%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.nav-title {
+    font-size: 16px;
+} */
+
+
+/* MAIN */
+/* 
+.container {
+    width: 90%;
+    max-width: 900px;
+
+    margin: 40px auto;
+}
+
+
+/* HERO */
+
+/* .hero {
+    text-align: center;
+
+    margin-bottom: 30px;
+}
+
+.hero h1 {
+    font-size: 36px;
+    margin-bottom: 12px;
+}
+
+.hero p {
+    color: #617064;
+    font-size: 17px;
+    line-height: 1.6;
+} */
+
+
+/* CARD */
+
+/* .card {
+    background: white;
+
+    padding: 35px;
+
+    border-radius: 18px;
+
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+
+    text-align: center;
+}
+
+.card h2 {
+    font-size: 27px;
+    margin-bottom: 8px;
+}
+
+.instruction {
+    color: #68756b;
+    margin-bottom: 25px;
+} */ 
+
+
+/* UPLOAD */
+/* 
+.upload-area {
+    border: 2px dashed #81b784;
+
+    padding: 35px 20px;
+
+    border-radius: 15px;
+
+    background: #f7fbf6;
+
+    position: relative;
+}
+
+.upload-icon {
+    font-size: 50px;
+    margin-bottom: 10px;
+}
+
+.upload-area h3 {
+    margin-bottom: 8px;
+}
+
+.upload-area p {
+    color: #78857b;
+    margin-bottom: 20px;
+}
+
+#imageInput {
+    display: none;
+}
+
+.choose-btn {
+    display: inline-block;
+
+    background: #43a047;
+    color: white;
+
+    padding: 12px 25px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    font-weight: bold;
+}
+
+.choose-btn:hover {
+    background: #2e7d32;
+} */
+
+
+/* PREVIEW */
+
+/* .preview-container {
+    display: none;
+
+    margin-top: 25px;
+}
+
+.preview-container h3 {
+    margin-bottom: 15px;
+}
+
+#imagePreview {
+    width: 250px;
+    height: 250px;
+
+    object-fit: cover;
+
+    border-radius: 12px;
+
+    border: 3px solid #e1e9e1;
+} */
+
+
+/* DETECT BUTTON */
+/* 
+.detect-btn {
+    margin-top: 25px;
+
+    width: 100%;
+
+    padding: 15px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #2e7d32;
+
+    color: white;
+
+    font-size: 18px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.detect-btn:hover {
+    background: #1b5e20;
+}
+
+
+/* RESULT */
+
+/* .result-card {
+    background: white;
+
+    margin-top: 30px;
+
+    padding: 35px;
+
+    border-radius: 18px;
+
+    text-align: center;
+
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+}
+
+.result-icon {
+    font-size: 45px;
+}
+
+.result-card h2 {
+    margin: 10px 0 25px;
+}
+
+.result-image img {
+    width: 260px;
+    height: 260px;
+
+    object-fit: cover;
+
+    border-radius: 15px;
+}
+
+.result-info {
+    margin-top: 25px;
+}
+
+.result-label {
+    color: #718071;
+
+    font-size: 14px;
+
+    margin-top: 15px;
+}
+
+.result-info h3 {
+    color: #2e7d32;
+
+    font-size: 23px;
+
+    margin-top: 7px;
+} */ 
+
+
+/* CONFIDENCE */
+
+/* .confidence {
+    width: 100%;
+
+    height: 15px;
+
+    background: #e1e8e1;
+
+    border-radius: 10px;
+
+    margin-top: 10px;
+
+    overflow: hidden;
+}
+
+.confidence-bar {
+    height: 100%;
+
+    background: #43a047;
+
+    border-radius: 10px;
+}
+
+.confidence-text {
+    margin-top: 8px;
+
+    font-size: 18px;
+
+    font-weight: bold;
+
+    color: #2e7d32;
+}
+
+
+/* NOTE */
+
+/* .result-note {
+    margin-top: 25px;
+
+    padding: 15px;
+
+    background: #f1f8e9;
+
+    border-radius: 10px;
+
+    color: #526052;
+
+    line-height: 1.5;
+}  */
+
+
+/* ERROR */
+
+/* .error-box {
+    margin-top: 25px;
+
+    padding: 15px;
+
+    background: #ffebee;
+
+    color: #c62828;
+
+    border-radius: 10px;
+
+    text-align: center;
+
+    font-weight: bold;
+} */
+
+
+/* FOOTER */
+/* 
+footer {
+    text-align: center;
+
+    padding: 25px;
+
+    color: #718071;
+
+    margin-top: 40px;
+}
+
+
+/* MOBILE */
+
+/* @media (max-width: 600px) {
+
+    .navbar {
+        padding: 15px 5%;
+    }
+
+    .nav-title {
+        display: none;
+    }
+
+    .hero h1 {
+        font-size: 28px;
+    }
+
+    .card,
+    .result-card {
+        padding: 25px 18px;
+    }
+
+} */ 
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* ================= BODY ================= */
+
+body {
+    font-family: Arial, sans-serif;
+
+    background: #f4f8f3;
+
+    color: #263a29;
+
+    min-height: 100vh;
+}
+
+
+/* ================= NAVBAR ================= */
+
+.navbar {
+    background: #2e7d32;
+
+    color: white;
+
+    padding: 18px 8%;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.12);
+}
+
+.logo {
+    font-size: 24px;
+
+    font-weight: bold;
+}
+
+.nav-title {
+    font-size: 16px;
+}
+
+
+/* ================= MAIN ================= */
+
+.container {
+    width: 90%;
+
+    max-width: 1000px;
+
+    margin: 45px auto;
+}
+
+
+/* ================= HERO ================= */
+
+.hero {
+    text-align: center;
+
+    margin-bottom: 35px;
+}
+
+.hero-icon {
+    font-size: 42px;
+
+    margin-bottom: 8px;
+}
+
+.hero h1 {
+    font-size: 38px;
+
+    margin-bottom: 12px;
+
+    color: #1b5e20;
+}
+
+.hero p {
+    color: #617064;
+
+    font-size: 17px;
+
+    line-height: 1.6;
+
+    max-width: 650px;
+
+    margin: auto;
+}
+
+
+/* ================= CARD ================= */
+
+.card,
+.result-card {
+    background: white;
+
+    padding: 35px;
+
+    border-radius: 20px;
+
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
+}
+
+
+/* ================= SECTION HEADING ================= */
+
+.section-heading {
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    margin-bottom: 25px;
+}
+
+.heading-icon {
+    font-size: 32px;
+}
+
+.card h2 {
+    font-size: 27px;
+
+    margin-bottom: 6px;
+}
+
+.instruction {
+    color: #68756b;
+}
+
+
+/* ================= UPLOAD ================= */
+
+.upload-area {
+    border: 2px dashed #81b784;
+
+    padding: 40px 20px;
+
+    border-radius: 16px;
+
+    background: #f7fbf6;
+
+    text-align: center;
+
+    transition: 0.3s;
+}
+
+.upload-area:hover {
+    background: #f0f8ef;
+
+    border-color: #43a047;
+}
+
+.upload-icon {
+    font-size: 52px;
+
+    margin-bottom: 10px;
+}
+
+.upload-area h3 {
+    margin-bottom: 8px;
+
+    font-size: 20px;
+}
+
+.upload-area p {
+    color: #78857b;
+
+    margin-bottom: 20px;
+}
+
+#imageInput {
+    display: none;
+}
+
+.choose-btn {
+    display: inline-block;
+
+    background: #43a047;
+
+    color: white;
+
+    padding: 13px 28px;
+
+    border-radius: 9px;
+
+    cursor: pointer;
+
+    font-weight: bold;
+
+    transition: 0.2s;
+}
+
+.choose-btn:hover {
+    background: #2e7d32;
+
+    transform: translateY(-1px);
+}
+
+
+/* ================= PREVIEW ================= */
+
+.preview-container {
+    display: none;
+
+    margin-top: 28px;
+
+    text-align: center;
+}
+
+.preview-container h3 {
+    margin-bottom: 15px;
+}
+
+.preview-image-wrapper {
+    display: inline-block;
+
+    padding: 6px;
+
+    background: white;
+
+    border-radius: 15px;
+
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.12);
+}
+
+#imagePreview {
+    width: 260px;
+
+    height: 260px;
+
+    object-fit: cover;
+
+    border-radius: 11px;
+
+    display: block;
+}
+
+.file-name {
+    margin-top: 10px;
+
+    color: #718071;
+
+    font-size: 14px;
+}
+
+
+/* ================= DETECT BUTTON ================= */
+
+.detect-btn {
+    margin-top: 28px;
+
+    width: 100%;
+
+    padding: 16px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #2e7d32;
+
+    color: white;
+
+    font-size: 18px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.detect-btn:hover {
+    background: #1b5e20;
+
+    transform: translateY(-1px);
+}
+
+.detect-btn:disabled {
+    background: #8da58f;
+
+    cursor: not-allowed;
+
+    transform: none;
+}
+
+
+/* ================= ERROR ================= */
+
+.error-box {
+    margin-top: 25px;
+
+    padding: 16px 20px;
+
+    background: #ffebee;
+
+    color: #c62828;
+
+    border-radius: 12px;
+
+    text-align: center;
+
+    font-weight: bold;
+}
+
+
+/* ================= RESULT ================= */
+
+.result-card {
+    margin-top: 35px;
+}
+
+
+/* ================= RESULT HEADER ================= */
+
+.result-header {
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    margin-bottom: 30px;
+}
+
+.success-icon {
+    width: 48px;
+
+    height: 48px;
+
+    border-radius: 50%;
+
+    background: #e8f5e9;
+
+    color: #2e7d32;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 25px;
+
+    font-weight: bold;
+}
+
+.result-status {
+    font-size: 12px;
+
+    font-weight: bold;
+
+    color: #43a047;
+
+    letter-spacing: 1px;
+
+    margin-bottom: 4px;
+}
+
+.result-header h2 {
+    font-size: 27px;
+}
+
+
+/* ================= RESULT CONTENT ================= */
+
+.result-content {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 40px;
+
+    align-items: center;
+}
+
+
+/* ================= RESULT IMAGE ================= */
+
+.result-label {
+    font-size: 12px;
+
+    font-weight: bold;
+
+    letter-spacing: 1px;
+
+    color: #718071;
+
+    margin-bottom: 12px;
+}
+
+.result-image {
+    padding: 8px;
+
+    background: #f7faf7;
+
+    border: 1px solid #e1e9e1;
+
+    border-radius: 17px;
+
+    display: inline-block;
+}
+
+.result-image img {
+    width: 100%;
+
+    max-width: 350px;
+
+    height: 330px;
+
+    object-fit: cover;
+
+    display: block;
+
+    border-radius: 11px;
+}
+
+
+/* ================= DIAGNOSIS ================= */
+
+.disease-name {
+    color: #1b5e20;
+
+    font-size: 29px;
+
+    line-height: 1.3;
+
+    margin-bottom: 25px;
+}
+
+
+/* ================= INFO ITEM ================= */
+
+.info-item {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 13px;
+
+    background: #f7fbf6;
+
+    border-radius: 10px;
+
+    margin-bottom: 20px;
+}
+
+.info-icon {
+    font-size: 25px;
+}
+
+.info-item div {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 4px;
+}
+
+.info-title {
+    font-size: 12px;
+
+    color: #718071;
+
+    text-transform: uppercase;
+}
+
+
+/* ================= CONFIDENCE ================= */
+
+.confidence-section {
+    margin-top: 20px;
+}
+
+.confidence-heading {
+    display: flex;
+
+    justify-content: space-between;
+
+    margin-bottom: 10px;
+
+    font-size: 15px;
+}
+
+.confidence-heading strong {
+    color: #2e7d32;
+
+    font-size: 20px;
+}
+
+.confidence-track {
+    width: 100%;
+
+    height: 14px;
+
+    background: #e1e8e1;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+}
+
+.confidence-bar {
+    height: 100%;
+
+    background: #43a047;
+
+    border-radius: 20px;
+
+    transition: width 1s ease;
+}
+
+
+/* ================= CONFIDENCE STATUS ================= */
+
+.confidence-status {
+    margin-top: 12px;
+
+    padding: 10px 12px;
+
+    border-radius: 8px;
+
+    font-size: 13px;
+
+    font-weight: bold;
+}
+
+.confidence-status.high {
+    background: #e8f5e9;
+
+    color: #2e7d32;
+}
+
+.confidence-status.medium {
+    background: #fff8e1;
+
+    color: #8d6e00;
+}
+
+.confidence-status.low {
+    background: #ffebee;
+
+    color: #c62828;
+}
+
+
+/* ================= INFORMATION BOX ================= */
+
+.information-box,
+.guidance-box {
+    margin-top: 35px;
+
+    padding: 22px;
+
+    border-radius: 14px;
+
+    background: #f7fbf6;
+
+    border: 1px solid #e0e9df;
+}
+
+.information-title {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin-bottom: 12px;
+}
+
+.information-title span {
+    font-size: 23px;
+}
+
+.information-title h3 {
+    font-size: 19px;
+}
+
+.information-box p {
+    color: #5e695f;
+
+    line-height: 1.7;
+
+    font-size: 15px;
+}
+
+
+/* ================= GUIDANCE ================= */
+
+.guidance-box {
+    background: #f1f8e9;
+
+    border-color: #dcebcf;
+}
+
+.guidance-box ul {
+    padding-left: 22px;
+
+    color: #526052;
+
+    line-height: 1.8;
+
+    font-size: 15px;
+}
+
+.guidance-box li {
+    margin-bottom: 5px;
+}
+
+
+/* ================= NOTE ================= */
+
+.result-note {
+    margin-top: 25px;
+
+    padding: 17px;
+
+    display: flex;
+
+    gap: 12px;
+
+    background: #fff8e1;
+
+    border-left: 4px solid #f9a825;
+
+    border-radius: 10px;
+
+    color: #5f552d;
+
+    line-height: 1.5;
+
+    font-size: 14px;
+}
+
+.note-icon {
+    font-size: 22px;
+}
+
+.result-note p {
+    margin-top: 5px;
+}
+
+
+/* ================= ANOTHER IMAGE ================= */
+
+.another-btn {
+    display: block;
+
+    width: 100%;
+
+    margin-top: 25px;
+
+    padding: 14px;
+
+    border: 2px solid #2e7d32;
+
+    border-radius: 10px;
+
+    background: white;
+
+    color: #2e7d32;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.another-btn:hover {
+    background: #2e7d32;
+
+    color: white;
+}
+
+
+/* ================= FOOTER ================= */
+
+footer {
+    text-align: center;
+
+    padding: 28px;
+
+    color: #718071;
+
+    margin-top: 40px;
+}
+
+.footer-subtitle {
+    margin-top: 6px;
+
+    font-size: 13px;
+}
+
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 750px) {
+
+    .navbar {
+        padding: 15px 5%;
+    }
+
+    .logo {
+        font-size: 20px;
+    }
+
+    .nav-title {
+        display: none;
+    }
+
+    .container {
+        width: 94%;
+
+        margin: 30px auto;
+    }
+
+    .hero h1 {
+        font-size: 30px;
+    }
+
+    .card,
+    .result-card {
+        padding: 25px 18px;
+    }
+
+    .result-content {
+        grid-template-columns: 1fr;
+
+        gap: 25px;
+    }
+
+    .result-image {
+        width: 100%;
+    }
+
+    .result-image img {
+        max-width: 100%;
+
+        height: 280px;
+    }
+
+    .disease-name {
+        font-size: 25px;
+    }
+
+    #imagePreview {
+        width: 230px;
+
+        height: 230px;
+    }
+}
