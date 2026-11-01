@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -56,5 +56,410 @@
     <p><b>Symptoms:</b> Curling and yellowing of leaves, reduced yield.</p>
     <p><b>Prevention:</b> Remove infected plants, use insect nets, and resistant varieties.</p>
   </div>
+</body>
+</html> -->
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>KrishiMitra-AI | Pest & Disease Guide</title>
+
+<style>
+:root {
+    --green: #168044;
+    --dark: #105c32;
+    --light: #f2f8f1;
+    --text: #26382c;
+    --muted: #647568;
+    --white: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #e9f5e9, #f7faf5);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 25px 15px;
+}
+
+.container {
+    max-width: 1100px;
+    margin: auto;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.header h1 {
+    color: var(--dark);
+    font-size: 30px;
+    margin-bottom: 12px;
+}
+
+.header p {
+    color: var(--muted);
+    line-height: 1.7;
+}
+
+.search-card {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.07);
+    margin-bottom: 25px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 9px;
+}
+
+select {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #cbd8cc;
+    border-radius: 8px;
+    font-size: 15px;
+    background: white;
+}
+
+button {
+    padding: 13px 22px;
+    background: var(--green);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+button:hover {
+    background: var(--dark);
+}
+
+.search-btn {
+    margin-top: 20px;
+    width: 100%;
+}
+
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.message {
+    text-align: center;
+    margin-top: 15px;
+    color: var(--muted);
+}
+
+.error {
+    color: #c62828;
+}
+
+.results {
+    display: none;
+}
+
+.result-heading {
+    color: var(--dark);
+    margin-bottom: 18px;
+}
+
+.guide-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+}
+
+.guide-card {
+    background: white;
+    border-radius: 13px;
+    padding: 22px;
+    border-left: 5px solid var(--green);
+    box-shadow: 0 4px 14px rgba(0,0,0,0.05);
+}
+
+.guide-card h3 {
+    color: var(--dark);
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.guide-card p {
+    color: #4b5b50;
+    line-height: 1.7;
+    margin-bottom: 12px;
+}
+
+.guide-card strong {
+    color: var(--dark);
+}
+
+.problem-type {
+    display: inline-block;
+    background: #e4f5e8;
+    color: var(--dark);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+
+.empty {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    text-align: center;
+    color: var(--muted);
+    grid-column: 1 / -1;
+}
+
+.note {
+    margin-top: 22px;
+    padding: 17px;
+    background: #fff8df;
+    border-left: 4px solid #e5a000;
+    border-radius: 8px;
+    line-height: 1.7;
+    font-size: 14px;
+}
+
+@media(max-width: 650px) {
+    .form-grid,
+    .guide-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .header h1 {
+        font-size: 24px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <header class="header">
+        <h1>🌿 Pest & Disease Guide</h1>
+        <p>
+            Identify common crop pests and diseases.
+            Learn their symptoms, causes, prevention
+            and management methods.
+        </p>
+    </header>
+
+    <section class="search-card">
+
+        <div class="form-grid">
+
+            <div>
+                <label for="crop">Select Crop</label>
+
+                <select id="crop">
+                    <option value="">-- Select Crop --</option>
+                    <option value="wheat">Wheat</option>
+                    <option value="paddy">Rice / Paddy</option>
+                    <option value="maize">Maize</option>
+                    <option value="cotton">Cotton</option>
+                    <option value="potato">Potato</option>
+                    <option value="tomato">Tomato</option>
+                    <option value="sugarcane">Sugarcane</option>
+                    <option value="groundnut">Groundnut</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="type">Select Problem Type</label>
+
+                <select id="type">
+                    <option value="">-- Select Type --</option>
+                    <option value="pest">Pest Management</option>
+                    <option value="disease">Disease Management</option>
+                    <option value="both">Both</option>
+                </select>
+            </div>
+
+        </div>
+
+        <button class="search-btn" id="searchBtn"
+                onclick="getGuide()">
+            Find Pest & Disease Information
+        </button>
+
+        <div id="message" class="message"></div>
+
+    </section>
+
+    <section class="results" id="results">
+
+        <h2 class="result-heading" id="resultTitle">
+            Crop Protection Information
+        </h2>
+
+        <div class="guide-grid" id="guideGrid"></div>
+
+        <div class="note">
+            <strong>Important:</strong>
+            These are general agricultural recommendations.
+            Correct identification is important before treatment.
+            Follow local agricultural department recommendations
+            and consult a Krishi Vigyan Kendra (KVK) expert
+            before applying pesticides or fungicides.
+        </div>
+
+    </section>
+
+</div>
+
+<script>
+
+const crop = document.getElementById("crop");
+const type = document.getElementById("type");
+const message = document.getElementById("message");
+const searchBtn = document.getElementById("searchBtn");
+const results = document.getElementById("results");
+const guideGrid = document.getElementById("guideGrid");
+
+async function getGuide() {
+
+    const selectedCrop = crop.value;
+    const selectedType = type.value;
+
+    if (!selectedCrop || !selectedType) {
+        message.textContent =
+            "Please select both crop and problem type.";
+        message.className = "message error";
+        results.style.display = "none";
+        return;
+    }
+
+    message.textContent = "Fetching agricultural information...";
+    message.className = "message";
+
+    searchBtn.disabled = true;
+    searchBtn.textContent = "Loading...";
+
+    results.style.display = "none";
+    guideGrid.innerHTML = "";
+
+    try {
+        const url = `http://127.0.0.1:5000/api/pest-disease?crop=${encodeURIComponent(selectedCrop)}&type=${encodeURIComponent(selectedType)}`;
+ 
+            
+
+        const response = await fetch(url);
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(data.Error || "Unable to fetch information.");
+        }
+
+        if (!Array.isArray(data.items) || data.items.length === 0) {
+            throw new Error("No information available for this selection.");
+        }
+
+        document.getElementById("resultTitle").textContent =
+            selectedCrop.charAt(0).toUpperCase() +
+            selectedCrop.slice(1) +
+            " - Protection Guide";
+
+        displayGuide(data.items);
+
+        results.style.display = "block";
+
+        message.textContent =
+            "Information loaded successfully!";
+
+    } catch (error) {
+
+        message.textContent = error.message;
+        message.className = "message error";
+
+    } finally {
+
+        searchBtn.disabled = false;
+        searchBtn.textContent =
+            "Find Pest & Disease Information";
+    }
+}
+
+function displayGuide(items) {
+
+    guideGrid.innerHTML = "";
+
+    items.forEach(item => {
+
+        const card = document.createElement("div");
+        card.className = "guide-card";
+
+        const heading = document.createElement("h3");
+        heading.textContent = item.name || "Crop problem";
+
+        const badge = document.createElement("span");
+        badge.className = "problem-type";
+        badge.textContent =
+            item.category === "pest" ? "PEST" : "DISEASE";
+
+        card.appendChild(badge);
+        card.appendChild(heading);
+
+        addDetail(card, "Affected Crop", item.crop);
+        addDetail(card, "Symptoms", item.symptoms);
+        addDetail(card, "Causes", item.causes);
+        addDetail(card, "Prevention", item.prevention);
+        addDetail(card, "Organic Management", item.organic_management);
+        addDetail(card, "Other Management", item.management);
+
+        guideGrid.appendChild(card);
+
+    });
+}
+
+function addDetail(card, label, value) {
+
+    if (!value) return;
+
+    const paragraph = document.createElement("p");
+    const strong = document.createElement("strong");
+
+    strong.textContent = label + ": ";
+
+    paragraph.appendChild(strong);
+    paragraph.appendChild(
+        document.createTextNode(value)
+    );
+
+    card.appendChild(paragraph);
+}
+
+</script>
+
 </body>
 </html>

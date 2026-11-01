@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -82,5 +82,442 @@
       }
     }
   </script>
+</body>
+</html> -->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KrishiMitra-AI | Smart Crop Advisory</title>
+
+<style>
+:root {
+    --green: #168044;
+    --dark-green: #105c32;
+    --light: #f2f8f1;
+    --text: #24352a;
+    --muted: #647568;
+    --white: #ffffff;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #e9f5e9, #f7faf5);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 25px 15px;
+}
+
+.container {
+    width: 100%;
+    max-width: 1050px;
+    margin: auto;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.header h1 {
+    color: var(--dark-green);
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.header p {
+    color: var(--muted);
+    line-height: 1.6;
+}
+
+.search-card {
+    background: var(--white);
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.07);
+    margin-bottom: 25px;
+}
+
+.search-card label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.search-row {
+    display: flex;
+    gap: 12px;
+}
+
+select {
+    flex: 1;
+    padding: 13px;
+    border: 1px solid #cbd8cc;
+    border-radius: 9px;
+    font-size: 15px;
+    background: white;
+    color: var(--text);
+}
+
+button {
+    background: var(--green);
+    color: white;
+    border: none;
+    padding: 13px 22px;
+    border-radius: 9px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+button:hover {
+    background: var(--dark-green);
+}
+
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.message {
+    text-align: center;
+    margin-top: 15px;
+    color: var(--muted);
+}
+
+.error {
+    color: #c62828;
+}
+
+.result-section {
+    display: none;
+}
+
+.result-heading {
+    color: var(--dark-green);
+    margin-bottom: 18px;
+    font-size: 23px;
+}
+
+.crop-banner {
+    background: linear-gradient(120deg, #176b3a, #39a765);
+    color: white;
+    padding: 25px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+
+.crop-banner h2 {
+    font-size: 27px;
+    margin-bottom: 8px;
+    text-transform: capitalize;
+}
+
+.crop-banner p {
+    line-height: 1.6;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+
+.info-card {
+    background: white;
+    padding: 20px;
+    border-radius: 13px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.05);
+    border-left: 4px solid var(--green);
+}
+
+.info-card h3 {
+    color: var(--dark-green);
+    font-size: 17px;
+    margin-bottom: 12px;
+}
+
+.info-card p {
+    line-height: 1.7;
+    color: #4b5b50;
+    white-space: pre-line;
+}
+
+.full-card {
+    grid-column: 1 / -1;
+}
+
+.note {
+    margin-top: 20px;
+    padding: 15px;
+    background: #fff8df;
+    border-left: 4px solid #e5a000;
+    border-radius: 8px;
+    line-height: 1.6;
+    font-size: 14px;
+}
+
+.loading {
+    display: none;
+    text-align: center;
+    padding: 20px;
+    color: var(--green);
+    font-weight: bold;
+}
+
+@media(max-width: 650px) {
+    .header h1 {
+        font-size: 24px;
+    }
+
+    .search-row {
+        flex-direction: column;
+    }
+
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .full-card {
+        grid-column: auto;
+    }
+
+    .crop-banner h2 {
+        font-size: 23px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <header class="header">
+        <h1>🌾 Smart Crop Advisory</h1>
+        <p>
+            Get crop-specific farming guidance, soil information,
+            fertilizer recommendations and irrigation guidance.
+        </p>
+    </header>
+
+    <section class="search-card">
+
+        <label for="cropInput">Select Your Crop</label>
+
+        <div class="search-row">
+
+            <select id="cropInput">
+                <option value="">-- Select a Crop --</option>
+
+                <option value="wheat">Wheat</option>
+                <option value="Paddy">Rice / Paddy</option>
+                <option value="maize">Maize</option>
+                <option value="cotton">Cotton</option>
+                <option value="sugarcane">Sugarcane</option>
+                <option value="groundnut">Groundnut</option>
+                <option value="soybean">Soybean</option>
+                <option value="sunflower">Sunflower</option>
+                <option value="potato">Potato</option>
+                <option value="tomato">Tomato</option>
+                <option value="onion">Onion</option>
+                <option value="carrot">Carrot</option>
+                <option value="cabbage">Cabbage</option>
+                <option value="cauliflower">Cauliflower</option>
+                <option value="brinjal">Brinjal</option>
+                <option value="chili">Chilli</option>
+                <option value="Barley">Barley</option>
+                <option value="Jowar">Jowar</option>
+                <option value="Bajra">Bajra</option>
+                <option value="Ragi">Ragi</option>
+                <option value="Mustard">Mustard</option>
+                <option value="Peas">Peas</option>
+                <option value="Grams">Gram</option>
+                <option value="cucumber">Cucumber</option>
+                <option value="watermelon">Watermelon</option>
+                <option value="pumpkin">Pumpkin</option>
+                <option value="Moong">Moong</option>
+                <option value="Urad">Urad</option>
+
+            </select>
+
+            <button id="adviceBtn" onclick="getAdvice()">
+                Get Crop Advice
+            </button>
+
+        </div>
+
+        <div id="message" class="message"></div>
+        <div id="loading" class="loading">
+            🌱 Fetching crop recommendations...
+        </div>
+
+    </section>
+
+
+    <section id="resultSection" class="result-section">
+
+        <h2 class="result-heading">Your Crop Information</h2>
+
+        <div class="crop-banner">
+            <h2 id="cropName"></h2>
+            <p id="cropSeason"></p>
+        </div>
+
+        <div class="info-grid">
+
+            <div class="info-card">
+                <h3>🌱 Suitable Soil</h3>
+                <p id="soil"></p>
+            </div>
+
+            <div class="info-card">
+                <h3>🌤️ Climate Requirements</h3>
+                <p id="climate"></p>
+            </div>
+
+            <div class="info-card">
+                <h3>🌧️ Rainfall Requirements</h3>
+                <p id="rainfall"></p>
+            </div>
+
+            <div class="info-card">
+                <h3>🧪 Fertilizer Guidance</h3>
+                <p id="fertilizer"></p>
+            </div>
+
+            <div class="info-card">
+                <h3>💧 Irrigation Guidance</h3>
+                <p id="irrigation"></p>
+            </div>
+
+            <div class="info-card full-card">
+                <h3>👨‍🌾 Farming Recommendations</h3>
+                <p id="advisory"></p>
+            </div>
+
+        </div>
+
+        <div class="note">
+            <strong>Important farming note:</strong>
+            These recommendations are general guidance.
+            Actual fertilizer doses, irrigation schedules and crop
+            practices should be adjusted according to soil testing,
+            crop variety, local agricultural conditions and growth stage.
+            Consult your local Krishi Vigyan Kendra (KVK) or agricultural
+            expert for field-specific recommendations.
+        </div>
+
+    </section>
+
+</div>
+
+
+<script>
+
+// =====================================
+// CROP ADVISORY API
+// =====================================
+
+const cropInput = document.getElementById("cropInput");
+const adviceBtn = document.getElementById("adviceBtn");
+const message = document.getElementById("message");
+const loading = document.getElementById("loading");
+const resultSection = document.getElementById("resultSection");
+
+
+// Use a relative URL when this page is served by
+// the same Flask application as the /advice endpoint.
+
+async function getAdvice() {
+
+    const crop = cropInput.value;
+
+    if (!crop) {
+        message.textContent = "Please select a crop first.";
+        message.className = "message error";
+        resultSection.style.display = "none";
+        return;
+    }
+
+    message.textContent = "";
+    loading.style.display = "block";
+    adviceBtn.disabled = true;
+    adviceBtn.textContent = "Loading...";
+
+    resultSection.style.display = "none";
+
+    try {
+
+        const response = await fetch(
+            // `/advice?crop=${encodeURIComponent(crop)}`
+            `http://127.0.0.1:5000/advice?crop=${crop}`
+        );
+
+        const data = await response.json();
+
+        if (!response.ok || data.Error) {
+            throw new Error(data.Error || "Unable to fetch crop advice.");
+        }
+
+        // Crop name and season
+        setText("cropName", data.Crop || crop);
+        setText("cropSeason", "🌿 Growing Season: " + (data.Season || "Not available"));
+
+        // Crop details
+        setText("soil", data["Soil Type"] || "Information not available.");
+        setText("climate", data.Climate || "Information not available.");
+        setText("rainfall", data.Rainfall || "Information not available.");
+        setText("fertilizer", data.Fertilizer || "Information not available.");
+        setText("irrigation", data.Irrigation || "Information not available.");
+        setText("advisory", data.Advisory || "Information not available.");
+
+        resultSection.style.display = "block";
+
+        message.textContent = "Crop recommendations loaded successfully.";
+        message.className = "message";
+
+    } catch (error) {
+
+        message.textContent = error.message;
+        message.className = "message error";
+
+    } finally {
+
+        loading.style.display = "none";
+        adviceBtn.disabled = false;
+        adviceBtn.textContent = "Get Crop Advice";
+    }
+}
+
+
+// Safely display API text without inserting HTML.
+function setText(id, value) {
+
+    document.getElementById(id).textContent = value;
+}
+
+
+// Press Enter to get advice (for keyboard users).
+cropInput.addEventListener("keydown", function(event) {
+
+    if (event.key === "Enter") {
+        getAdvice();
+    }
+
+});
+
+</script>
+
 </body>
 </html>

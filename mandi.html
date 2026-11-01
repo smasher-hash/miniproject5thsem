@@ -110,29 +110,35 @@
   <header>🌾 Krisimitra_AI — Mandi Rates Comparison</header>
 
   <div class="container">
-    <h2>Compare Previous and Present Day Rates</h2>
+ 
 
     <div class="filters">
       <input type="text" id="cropInput" placeholder="🔍 Search by crop name..." oninput="filterMandi()">
       <input type="text" id="districtInput" placeholder="🏙️ Search by district or market..." oninput="filterMandi()">
     </div>
 
-    <table>
-      <thead>
+    
+<table>
+    <thead>
         <tr>
-          <th>State</th>
-          <th>District</th>
-          <th>Market</th>
-          <th>Commodity</th>
-          <th>Variety</th>
-          <th>Prev Day Price (₹)</th>
-          <th>Today Price (₹)</th>
-          <th>Change</th>
-          <th>Date</th>
+            <th>State</th>
+            <th>District</th>
+            <th>Market</th>
+            <th>Commodity</th>
+            <th>Variety</th>
+            <th>Min Price (₹)</th>
+            <th>Max Price (₹)</th>
+            <th>Modal Price (₹)</th>
+            <th>Arrival Date</th>
         </tr>
-      </thead>
-      <tbody id="mandiTableBody"></tbody>
-    </table>
+    </thead>
+    <tbody id="mandiTableBody">
+        <tr>
+            <td colspan="9">Loading mandi prices...</td>
+        </tr>
+    </tbody>
+</table>
+
   </div>
 
   <div class="footer">
@@ -141,64 +147,87 @@
 
   <script>
     // ===== Static Mandi Data with Previous & Current Day Prices =====
-    const mandiData = [
-      { state: "Madhya Pradesh", district: "Indore", market: "Indore Mandi", commodity: "Wheat", variety: "Lok-1", prev_price: 2150, today_price: 2200, date: "2025-10-12" },
-      { state: "Maharashtra", district: "Nagpur", market: "Nagpur Mandi", commodity: "Soybean", variety: "JS 335", prev_price: 3950, today_price: 4000, date: "2025-10-12" },
-      { state: "Punjab", district: "Ludhiana", market: "Ludhiana Mandi", commodity: "Paddy", variety: "Basmati", prev_price: 3150, today_price: 3200, date: "2025-10-12" },
-      { state: "Uttar Pradesh", district: "Kanpur", market: "Kanpur Mandi", commodity: "Potato", variety: "Kufri Jyoti", prev_price: 1080, today_price: 1050, date: "2025-10-12" },
-      { state: "Gujarat", district: "Ahmedabad", market: "Ahmedabad Mandi", commodity: "Cotton", variety: "Shankar-6", prev_price: 7450, today_price: 7500, date: "2025-10-12" },
-      { state: "Uttar Pradesh", district: "Lucknow", market: "Lucknow Mandi", commodity: "Rice", variety: "Basmati", prev_price: 2680, today_price: 2700, date: "2025-10-12" },
-      { state: "Uttar Pradesh", district: "Meerut", market: "Meerut Mandi", commodity: "Sugarcane", variety: "Co 0238", prev_price: 315, today_price: 320, date: "2025-10-12" }
-    ];
+   
+const tableBody = document.getElementById("mandiTableBody");
 
-    // ===== Render Data =====
-    function loadMandiData(data) {
-      const tableBody = document.getElementById("mandiTableBody");
-      tableBody.innerHTML = "";
+async function loadMandiData() {
+    const crop = document.getElementById("cropInput").value.trim();
+    const district = document.getElementById("districtInput").value.trim();
 
-      if (data.length === 0) {
-        tableBody.innerHTML = `<tr><td colspan="9">No results found</td></tr>`;
+    tableBody.innerHTML =
+        '<tr><td colspan="9">Loading live mandi prices...</td></tr>';
+
+    try {
+        const params = new URLSearchParams();
+
+        if (crop) params.append("crop", crop);
+        if (district) params.append("district", district);
+
+        const response = await fetch(
+    `http://127.0.0.1:5000/api/mandi?${params.toString()}`
+);
+
+        const result = await response.json();
+
+        if (!response.ok || !result.success) {
+            throw new Error(result.error || "Unable to load mandi data");
+        }
+
+        displayMandiData(result.records);
+
+    } catch (error) {
+        console.error("Mandi Error:", error);
+
+        tableBody.innerHTML =
+            `<tr><td colspan="9">${error.message}</td></tr>`;
+    }
+}
+
+function displayMandiData(data) {
+    tableBody.innerHTML = "";
+
+    if (!data || data.length === 0) {
+        tableBody.innerHTML =
+            '<tr><td colspan="9">No mandi records found.</td></tr>';
         return;
-      }
-
-      data.forEach(item => {
-        const priceChange = item.today_price - item.prev_price;
-        const changeClass = priceChange > 0 ? "up" : priceChange < 0 ? "down" : "";
-        const changeSymbol = priceChange > 0 ? "🔼" : priceChange < 0 ? "🔽" : "➖";
-
-        const row = `
-          <tr>
-            <td>${item.state}</td>
-            <td>${item.district}</td>
-            <td>${item.market}</td>
-            <td>${item.commodity}</td>
-            <td>${item.variety}</td>
-            <td>${item.prev_price}</td>
-            <td>${item.today_price}</td>
-            <td class="${changeClass}">${changeSymbol} ${Math.abs(priceChange)} ₹</td>
-            <td>${item.date}</td>
-          </tr>`;
-        tableBody.innerHTML += row;
-      });
     }
 
-    // ===== Filter Logic =====
-    function filterMandi() {
-      const cropInput = document.getElementById("cropInput").value.toLowerCase();
-      const districtInput = document.getElementById("districtInput").value.toLowerCase();
+    data.forEach(item => {
+        const row = document.createElement("tr");
 
-      const filtered = mandiData.filter(item => {
-        return (
-          (!cropInput || item.commodity.toLowerCase().includes(cropInput)) &&
-          (!districtInput || item.district.toLowerCase().includes(districtInput) || item.market.toLowerCase().includes(districtInput))
-        );
-      });
+        const values = [
+            item.state,
+            item.district,
+            item.market,
+            item.commodity,
+            item.variety,
+            item.min_price,
+            item.max_price,
+            item.modal_price,
+            item.arrival_date
+        ];
 
-      loadMandiData(filtered);
-    }
+        values.forEach(value => {
+            const cell = document.createElement("td");
+            cell.textContent = value ?? "N/A";
+            row.appendChild(cell);
+        });
 
-    // Load all data initially
-    loadMandiData(mandiData);
+        tableBody.appendChild(row);
+    });
+}
+
+// Search automatically when filters change
+let searchTimer;
+
+function filterMandi() {
+    clearTimeout(searchTimer);
+    searchTimer = setTimeout(loadMandiData, 500);
+}
+
+// Load live data when page opens
+loadMandiData();
+
   </script>
 </body>
 </html>

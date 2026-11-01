@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -17,10 +17,10 @@
     <div class="form-toggle">
       <button id="show-login">Login</button>
       <button id="show-signup">Sign Up</button>
-    </div>
+    </div> -->
 
     <!-- Login Form -->
-    <form id="login-form" class="form active">
+    <!-- <form id="login-form" class="form active">
       <h2>Login</h2>
       <label for="login-email">Email</label>
       <input type="email" id="login-email" required>
@@ -29,10 +29,10 @@
       <input type="password" id="login-password" required>
 
       <button type="submit">Login</button>
-    </form>
+    </form> -->
 
     <!-- Signup Form -->
-    <form id="signup-form" class="form">
+    <!-- <form id="signup-form" class="form">
       <h2>Sign Up</h2>
       <label for="signup-name">Full Name</label>
       <input type="text" id="signup-name" required>
@@ -49,4 +49,122 @@
 
   <script src="login.js"></script>
 </body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>KrishiMitra-AI | Login / Signup</title>
+
+    <link rel="stylesheet" href="/login.css">
+
+    <!-- Define Google Translate callback before loading its script -->
+    <script>
+        window.googleTranslateElementInit = function () {
+            if (window.google && window.google.translate) {
+                new google.translate.TranslateElement(
+                    { pageLanguage: "en" },
+                    "google_translate_element"
+                );
+            }
+        };
+    </script>
+
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</head>
+
+<body>
+
+    <div class="translate" id="google_translate_element"></div>
+
+    <div class="container">
+
+        <h1>KrishiMitra-AI 🌱</h1>
+
+        <div class="form-toggle">
+            <button type="button" id="show-login" class="active">
+                Login
+            </button>
+
+            <button type="button" id="show-signup">
+                Sign Up
+            </button>
+        </div>
+
+        <!-- Status messages -->
+        <p id="auth-message" role="status" aria-live="polite"></p>
+
+        <!-- Login Form -->
+        <form id="login-form" class="form active">
+
+            <h2>Welcome Back!</h2>
+
+            <label for="login-email">Email</label>
+            <input
+                type="email"
+                id="login-email"
+                autocomplete="email"
+                required
+            >
+
+            <label for="login-password">Password</label>
+            <input
+                type="password"
+                id="login-password"
+                autocomplete="current-password"
+                required
+            >
+
+            <button type="submit">Login</button>
+
+        </form>
+
+        <!-- Signup Form -->
+        <form id="signup-form" class="form">
+
+            <h2>Create Your Account</h2>
+
+            <label for="signup-name">Full Name</label>
+            <input
+                type="text"
+                id="signup-name"
+                autocomplete="name"
+                required
+            >
+
+            <label for="signup-email">Email</label>
+            <input
+                type="email"
+                id="signup-email"
+                autocomplete="email"
+                required
+            >
+
+            <label for="signup-password">Password</label>
+            <input
+                type="password"
+                id="signup-password"
+                minlength="8"
+                autocomplete="new-password"
+                required
+            >
+
+            <button type="submit">Sign Up</button>
+
+        </form>
+
+        <p>
+            <a href="/">Back to Home</a>
+        </p>
+
+    </div>
+
+    <script src="/login.js"></script>
+
+</body>
 </html>
+

@@ -228,7 +228,6 @@
 
     <link rel="stylesheet"
           href="{{ url_for('disease.static', filename='disease.css') }}">
-">
 </head>
 
 <body>
@@ -623,6 +622,25 @@
             </div>
 
 
+
+            <!-- <div class="guidance-box">
+
+    <div class="information-title">
+        <span>💡</span>
+        <h3>Disease-Specific Guidance</h3>
+    </div>
+
+    {% if guidance %}
+        <ul>
+            {% for item in guidance %}
+                <li>{{ item }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Guidance is currently unavailable.</p>
+    {% endif %}
+
+</div> -->
             <!-- ================= NOTE ================= -->
 
             <div class="result-note">
