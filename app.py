@@ -371,7 +371,7 @@ def signup():
     return jsonify({
         "success": True,
         "message": "Registration successful!",
-        "redirect": "/dashboard"
+        "redirect": "/"
     }), 201
 
 
@@ -404,22 +404,22 @@ def login():
     return jsonify({
         "success": True,
         "message": "Login successful!",
-        "redirect": "/dashboard"
+        "redirect": "/"
     })
 
 
 
 
-@app.route("/dashboard")
-def dashboard():
+# @app.route("/dashboard")
+# def dashboard():
 
-    if "user_email" not in session:
-        return redirect("/login")
+#     if "user_email" not in session:
+#         return redirect("/login")
 
-    return send_from_directory(
-        app.root_path,
-        "dashboard.html"
-    )
+#     return send_from_directory(
+#         app.root_path,
+#         "dashboard.html"
+#     )
 
 
 @app.route("/logout")
@@ -439,7 +439,19 @@ def login_css():
 def login_js():
     return send_from_directory(app.root_path, "login.js")
 
+@app.route("/<path:filename>")
+def project_files(filename):
 
+    allowed_extensions = (
+        ".html", ".css", ".js",
+        ".jpg", ".jpeg", ".png",
+        ".json", ".ico"
+    )
+
+    if filename.startswith(".") or not filename.lower().endswith(allowed_extensions):
+        return "File not found", 404
+
+    return send_from_directory(app.root_path, filename)
 
 @app.route("/")
 def home():
@@ -576,7 +588,7 @@ def fetch_mandi_data_from_api(crop="", district="", state=""):
 
 @app.route("/mandi")
 def mandi():
-    return render_template("mandi.html")
+    return send_from_directory(app.root_path, "mandi.html")
 
 
 @app.route("/api/mandi", methods=["GET"])
@@ -589,16 +601,31 @@ def get_mandi():
     cache_key = (crop.lower(), district.lower(), state.lower())
     now = time.time()
 
+    # cached = MANDI_CACHE.get(cache_key)
+
+    # if cached and now - cached["timestamp"] < MANDI_CACHE_DURATION:
+    #     return jsonify({
+    #         "success": True,
+    #         "source": "Cached data.gov.in - AGMARKNET",
+    #         "count": len(cached["data"]),
+    #         "records": cached["data"],
+    #         "cached": True
+    #     })
+
     cached = MANDI_CACHE.get(cache_key)
 
-    if cached and now - cached["timestamp"] < MANDI_CACHE_DURATION:
-        return jsonify({
-            "success": True,
-            "source": "Cached data.gov.in - AGMARKNET",
-            "count": len(cached["data"]),
-            "records": cached["data"],
-            "cached": True
-        })
+    if (
+    cached
+    and cached["data"]
+    and now - cached["timestamp"] < MANDI_CACHE_DURATION
+   ):
+     return jsonify({
+        "success": True,
+        "source": "Cached data.gov.in - AGMARKNET",
+        "count": len(cached["data"]),
+        "records": cached["data"],
+        "cached": True
+    })
 
     try:
         mandi_list = fetch_mandi_data_from_api(

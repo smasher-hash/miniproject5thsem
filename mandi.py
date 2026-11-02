@@ -28,10 +28,12 @@ def search_crop():
 if __name__ == "_main_":
     mandi.run(debug=True)
 
-    from flask import Flask, jsonify, request, render_template
-import requests
+from flask import Flask, jsonify, request, render_template
+import json
 import datetime
-from bs4 import BeautifulSoup  # if using scraping fallback
+from urllib.parse import urlencode
+from urllib.request import urlopen
+from html.parser import HTMLParser
 
 mandi = Flask(__name__)
 
@@ -39,13 +41,17 @@ mandi = Flask(__name__)
 DATA_API_URL = "https://data.gov.in/resource/XXXXXXXX"  # replace with actual resource endpoint
 CEDA_API_URL = "https://agmarknet.ceda.ashoka.edu.in/api/marketdata"  # example
 
+def _get(url, params=None, timeout=10):
+    if params:
+        url = f"{url}?{urlencode(params)}"
+    return urlopen(url, timeout=timeout)
+
 def fetch_today_data():
     """Fetch current day's mandi data via API (Data.gov.in or CEDA)."""
     params = {"format": "json"}
     try:
-        resp = requests.get(DATA_API_URL, params=params, timeout=10)
-        resp.raise_for_status()
-        data = resp.json()
+        with _get(DATA_API_URL, params=params, timeout=10) as resp:
+            data = json.loads(resp.read().decode("utf-8"))
         # The structure may have `records` or `data` etc.
         return data.get("records", data)
     except Exception as e:
@@ -58,14 +64,51 @@ def fetch_yesterday_data():
     yesterday = (datetime.date.today() - datetime.timedelta(days=1)).isoformat()
     params = {"date": yesterday, "format": "json"}
     try:
-        resp = requests.get(DATA_API_URL, params=params, timeout=10)
-        resp.raise_for_status()
-        data = resp.json()
+        with _get(DATA_API_URL, params=params, timeout=10) as resp:
+            data = json.loads(resp.read().decode("utf-8"))
         return data.get("records", data)
     except Exception as e:
         print("API date filter failed:", e)
     # Fallback: scrape from Agmarknet’s “Datewise Commodity Report”
     return scrape_yesterday_from_agmarknet(yesterday)
+
+class _AgmarknetTableParser(HTMLParser):
+    """Extract rows from Agmarknet's results table without third-party packages."""
+
+    def __init__(self):
+        super().__init__()
+        self.rows = []
+        self.in_table = False
+        self.in_row = False
+        self.in_cell = False
+        self.current_row = []
+        self.current_cell = []
+
+    def handle_starttag(self, tag, attrs):
+        attrs = dict(attrs)
+        if tag == "table" and attrs.get("id") == "GVCGrid":
+            self.in_table = True
+        elif self.in_table and tag == "tr":
+            self.in_row = True
+            self.current_row = []
+        elif self.in_row and tag in ("td", "th"):
+            self.in_cell = True
+            self.current_cell = []
+
+    def handle_data(self, data):
+        if self.in_cell:
+            self.current_cell.append(data)
+
+    def handle_endtag(self, tag):
+        if self.in_cell and tag in ("td", "th"):
+            self.current_row.append("".join(self.current_cell).strip())
+            self.in_cell = False
+        elif self.in_row and tag == "tr":
+            self.rows.append(self.current_row)
+            self.in_row = False
+        elif self.in_table and tag == "table":
+            self.in_table = False
+
 
 def scrape_yesterday_from_agmarknet(date_str):
     # Simple scraping of HTML page for datewise report
@@ -76,14 +119,13 @@ def scrape_yesterday_from_agmarknet(date_str):
         # other query parameters may be needed: commodity, state, etc.
     }
     try:
-        resp = requests.get(url, params=params, timeout=10)
-        resp.raise_for_status()
-        soup = BeautifulSoup(resp.text, "html.parser")
-        table = soup.find("table", {"id": "GVCGrid"})  # example table id (inspect real page)
-        rows = table.find_all("tr")[1:]  # skip header
+        with _get(url, params=params, timeout=10) as resp:
+            html = resp.read().decode("utf-8")
+        parser = _AgmarknetTableParser()
+        parser.feed(html)
+        rows = parser.rows[1:]  # skip header
         result = []
-        for r in rows:
-            cols = [c.get_text(strip=True) for c in r.find_all("td")]
+        for cols in rows:
             # You’ll need to map columns to your fields
             # Example: [ State, District, Market, Commodity, Variety, Min, Max, Modal, Date ]
             if len(cols) >= 9:

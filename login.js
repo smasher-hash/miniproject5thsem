@@ -166,11 +166,11 @@ signupForm.addEventListener("submit", async function (event) {
 
         const result = await response.json();
 
+        
         if (response.ok && result.success) {
-            showMessage(result.message, true);
-
-            window.location.href = result.redirect;
-        } else {
+               window.location.href = "/";
+            }
+        else {
             showMessage(result.message || "Registration failed.");
         }
 
@@ -183,6 +183,11 @@ signupForm.addEventListener("submit", async function (event) {
 });
 
 
+// =====================================
+// LOGIN
+// =====================================
+
+ 
 // =====================================
 // LOGIN
 // =====================================
@@ -213,14 +218,24 @@ loginForm.addEventListener("submit", async function (event) {
             })
         });
 
-        const result = await response.json();
+        const responseText = await response.text();
 
+        let result;
+
+        try {
+            result = JSON.parse(responseText);
+        } catch {
+            console.error("Non-JSON server response:", responseText);
+            showMessage("Server returned an unexpected response. Check Flask terminal.");
+            return;
+        }
+
+       
         if (response.ok && result.success) {
-            showMessage(result.message, true);
-
-            window.location.href = result.redirect;
-        } else {
-            showMessage(result.message || "Login failed.");
+        window.location.href = "/";
+        }
+        else {
+            showMessage(result.message || `Login failed. Error: ${response.status}`);
         }
 
     } catch (error) {
@@ -230,6 +245,7 @@ loginForm.addEventListener("submit", async function (event) {
         submitButton.disabled = false;
     }
 });
+
 
 
 // =====================================

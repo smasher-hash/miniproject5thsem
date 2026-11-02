@@ -1,0 +1,8 @@
+
+Flask
+Werkzeug
+pymongo
+gunicorn
+tensorflow
+numpy
+Pillow
