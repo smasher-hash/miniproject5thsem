@@ -316,9 +316,9 @@ crop_data = {
 #     return "🌾Smart Krishi Portal Crop Advisory System Running"
 
 
-from chatbotModule import chatbot_bp
+# from chatbotModule import chatbot_bp
 
-app.register_blueprint(chatbot_bp)
+# app.register_blueprint(chatbot_bp)
 
 # =====================================
 # USER AUTHENTICATION - MONGODB
